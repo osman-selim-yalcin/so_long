@@ -5,9 +5,10 @@ void    walkwrite(t_data *data)
 {
 	char	*variable;
 
+	variable = malloc(100 * sizeof(char));
 	variable = ft_itoa(data->walk);
-    if (data->walkcheck == 0) 
-        ft_printf("walk %d\n", data->walk);
+    if (data->walkcheck == 0)
+        ft_printf("step: %d\n", data->walk);
 	mlx_string_put(data->mlx, data->mlx_window, 10, 20, 0x00FF00, "Step : ");
 	mlx_string_put(data->mlx, data->mlx_window, 55, 20, 0x00FF00, variable);
 	free(variable);

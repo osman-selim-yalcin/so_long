@@ -18,10 +18,10 @@ void	mapnamecheck(char *argv)
 	c = 0;
 	while (argv[c])
 		c++;
-	if (argv[c - 1] != 'r' && argv[c - 2] != 'e' && argv[c - 3] != 'b' && argv[c - 4] != '.')
+	if (argv[c - 1] != 'r' | argv[c - 2] != 'e' | argv[c - 3] != 'b' | argv[c - 4] != '.')
 	{
 		ft_printf(".ber file not found\n");
-		exit(1);
+		exit (1);
 	}
 }
 
@@ -34,28 +34,6 @@ void	control_mlx(t_data *data)
 		free(data);
 		exit(1);
 	}
-}
-
-void	finish(t_data *data)
-{
-	printf("You Win\n");
-	mlx_destroy_image(data->mlx, data->img);
-	mlx_clear_window(data->mlx, data->mlx_window);
-	exit(1);
-}
-
-void	esc_finish(t_data *data)
-{
-	print("exit\n");
-	mlx_destroy_image(data->mlx, data->img);
-	mlx_clear_window(data->mlx, data->mlx_window);
-	exit(1);
-}
-
-void	error_finish(t_data *data)
-{
-	printf("wrong map\n");
-	exit(1);
 }
 
 void	mapcheck(t_data *data)
@@ -74,15 +52,16 @@ void	mapcheck(t_data *data)
 			if (f == -1)
 				a = c + 1;
 		f += 2;
+		if (data->map[c] == '\0')
+		{
+			if (c + 1 != (a * f))
+				error_finish(data);
+			return;
+		}
 		b = c + 1;
 		while (data->map[b] != '\n' && data->map[b] != '\0')
 			b++;
-		if (b == c + 1)
-		{	
-			if (c + 1 != (a * f))
-				error_finish(data);
-		}
-		else if ((b - c + 1 != a) || (c != (a * f)))
+		if ((b - c + 1 != a) || (c != (a * f)))
 			error_finish(data);
 		b++;
 	}
@@ -107,8 +86,8 @@ void	checkvar(t_data *data)
 			c++;
 		if (data->map[i] == 'E')
 			e++;
-		i++;		
+		i++;
 	}
 	if (p != 1 | c <= 0 | e != 1)
-		error_finish(data);	
+		error_finish(data);
 }

@@ -2,7 +2,7 @@
 
 void fill(t_data *data, char *argv)
 {
-	data->img = (void **)malloc(sizeof(void *) * 10);
+	data->img = (void **)malloc(sizeof(void *) * 8);
 	data->img[0] = mlx_xpm_file_to_image(data->mlx, front,
 		&data->imgx, &data->imgy);
 	data->img[1] = mlx_xpm_file_to_image(data->mlx, left,
@@ -23,13 +23,12 @@ void fill(t_data *data, char *argv)
 	data->size_y = -1;
 	data->walk = 0;
 	data->ccount = 0;
-	data->name = argv;
-	makemap(data);
+	makemap(data, argv);
 }
 
-int    main(int argc, char **argv)
+int		main(int argc, char **argv)
 {
-    t_data    *data;
+	t_data	*data;
 	(void)argc;
 	if (argc != 2)
 	{
@@ -37,17 +36,20 @@ int    main(int argc, char **argv)
 		exit(1);
 	}
 	mapnamecheck(argv[1]);
-  	data = (t_data *)malloc(sizeof(t_data) * 1);
+	data = (t_data *)malloc(sizeof(t_data) * 1);
 	control_mlx(data);
-    fill(data, argv[1]);
+	fill(data, argv[1]);
 	mapcheck(data);
 	checkvar(data);
 	openwin(data, argv[1]);
 	put_background(data);
+	ft_printf("lala\n");
 	readmap(data);
+	ft_printf("lala\n");
 	mlx_put_image_to_window(data->mlx, data->mlx_window, data->img[0],
 		data->position_x * 64, data->position_y * 64);
+	ft_printf("lala\n");
 	walkwrite(data);
-    mlx_hook(data->mlx_window, 2, 1L << 0, key_event, data);
-    mlx_loop(data->mlx);
+	mlx_hook(data->mlx_window, 2, 1L << 0, key_event, data);
+	mlx_loop(data->mlx);
 }

@@ -30,13 +30,13 @@
 
 typedef struct s_data
 {
-    void    *mlx;
-    void    *mlx_window;
-    void    **img;
-    int     imgx;
-    int     imgy;
-    int     position_x;
-    int   	position_y;
+	void	*mlx;
+	void	*mlx_window;
+	void	**img;
+	int		imgx;
+	int		imgy;
+	int		position_x;
+	int		position_y;
 	int		index_x;
 	int		index_y;
 	int		size_x;
@@ -49,8 +49,8 @@ typedef struct s_data
 	long int	walk;
 	int		walkcheck;
 	char 		*map;
-	char 		*name;
-}    t_data;
+	int		lastimg;
+}	t_data;
 
 void openwin(t_data *data, char *argv);
 void readmap(t_data *data);
@@ -63,7 +63,7 @@ void putplayer(t_data *data);
 void putwall(t_data *data);
 void putexit(t_data *data);
 void	put_background(t_data *data);
-void makemap(t_data *data);
+void makemap(t_data *data, char *argv);
 void move_right(t_data *data);
 void move_left(t_data *data);
 void move_up(t_data *data);
@@ -76,5 +76,5 @@ void	error_finish(t_data *data);
 void	walkwrite(t_data *data);
 int	itoacount(int n);
 char	*ft_itoa(int n);
-
+void	clear_img(t_data *data);
 #endif

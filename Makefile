@@ -1,4 +1,4 @@
-SRCS = check.c playermove.c put.c readmap.c so_long.c gnl/get_next_line.c gnl/get_next_line_utils.c walkwrite.c
+SRCS = check.c playermove.c put.c readmap.c so_long.c gnl/get_next_line.c gnl/get_next_line_utils.c walkwrite.c finish.c
 
 OBJS = $(SRCS:.c=.o)
 

@@ -35,7 +35,11 @@ void	openwin(t_data *data, char *argv)
 		data->size_y += 1;
 	}
 	if (data->size_y < 3 | data->size_x < 5)
+	{
+		free(buffer);
+		close(fd);
 		error_finish(data);
+	}
 	data->mlx_window = mlx_new_window(data->mlx, data->size_x * 64,
 			data->size_y * 64, "Pencere");
 	close(fd);
@@ -47,7 +51,6 @@ void readmap(t_data *data)
 	char *temp;
 
 	data->ccount = 0;
-	temp = malloc(sizeof(char) * 1000);
 	temp = data->map;
 	while (*temp != '\0')
 	{
@@ -71,18 +74,19 @@ void readmap(t_data *data)
 	data->index_x = 0;
 }
 
-void makemap(t_data *data)
+void makemap(t_data *data, char *argv)
 {
 	int fd;
 	char *temp;
 
 	temp = ft_strdup("a");
-	fd = open(data->name, O_RDONLY);
+	fd = open(argv, O_RDONLY);
 	while (temp != NULL)
 	{
 		temp = get_next_line(fd);
 		if (temp != NULL)
 			data->map = ft_strjoin(data->map, temp);
 	}
+	free(temp);
 	close(fd);
 }
