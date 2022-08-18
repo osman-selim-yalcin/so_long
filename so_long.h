@@ -72,9 +72,9 @@ void	esc_finish(t_data *data);
 void finish(t_data *data);
 int   key_event(int keycode, t_data *data);
 void fill(t_data *data, char *argv);
-void	error_finish(t_data *data);
 void	walkwrite(t_data *data);
 int	itoacount(int n);
 char	*ft_itoa(int n);
+void	error_finishbf(t_data *data);
 void	clear_img(t_data *data);
 #endif

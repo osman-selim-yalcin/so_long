@@ -55,14 +55,14 @@ void	mapcheck(t_data *data)
 		if (data->map[c] == '\0')
 		{
 			if (c + 1 != (a * f))
-				error_finish(data);
+				error_finishbf(data);
 			return;
 		}
 		b = c + 1;
 		while (data->map[b] != '\n' && data->map[b] != '\0')
 			b++;
 		if ((b - c + 1 != a) || (c != (a * f)))
-			error_finish(data);
+			error_finishbf(data);
 		b++;
 	}
 }
@@ -89,5 +89,5 @@ void	checkvar(t_data *data)
 		i++;
 	}
 	if (p != 1 | c <= 0 | e != 1)
-		error_finish(data);
+		error_finishbf(data);
 }

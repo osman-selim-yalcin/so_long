@@ -8,6 +8,7 @@ void	finish(t_data *data)
 	mlx_clear_window(data->mlx, data->mlx_window);
 	mlx_destroy_window(data->mlx, data->mlx_window);
 	free(data->map);
+	free(data->mlx);
 	free(data);
 	system("leaks so_long");
 	exit(1);
@@ -36,12 +37,12 @@ void	esc_finish(t_data *data)
 	exit(1);
 }
 
-void	error_finish(t_data *data)
+void	error_finishbf(t_data *data)
 {
 	clear_img(data);
-	mlx_clear_window(data->mlx, data->mlx_window);
-	mlx_destroy_window(data->mlx, data->mlx_window);
 	free(data->map);
+	free(data->mlx);
 	free(data);
+	system("leaks so_long");
 	exit(1);
 }

@@ -34,12 +34,6 @@ void	openwin(t_data *data, char *argv)
 		check = read(fd, buffer, line);
 		data->size_y += 1;
 	}
-	if (data->size_y < 3 | data->size_x < 5)
-	{
-		free(buffer);
-		close(fd);
-		error_finish(data);
-	}
 	data->mlx_window = mlx_new_window(data->mlx, data->size_x * 64,
 			data->size_y * 64, "Pencere");
 	close(fd);
@@ -79,8 +73,12 @@ void makemap(t_data *data, char *argv)
 	int fd;
 	char *temp;
 
-	temp = ft_strdup("a");
 	fd = open(argv, O_RDONLY);
+	if (fd < 0)
+		error_finishbf(data);
+	temp = malloc(2 * sizeof(char));
+	temp[0] = 'a';
+	temp[1] = '\0';
 	while (temp != NULL)
 	{
 		temp = get_next_line(fd);

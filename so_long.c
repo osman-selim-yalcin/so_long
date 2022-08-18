@@ -23,6 +23,7 @@ void fill(t_data *data, char *argv)
 	data->size_y = -1;
 	data->walk = 0;
 	data->ccount = 0;
+	data->walkcheck = 1;
 	makemap(data, argv);
 }
 
@@ -43,12 +44,9 @@ int		main(int argc, char **argv)
 	checkvar(data);
 	openwin(data, argv[1]);
 	put_background(data);
-	ft_printf("lala\n");
 	readmap(data);
-	ft_printf("lala\n");
 	mlx_put_image_to_window(data->mlx, data->mlx_window, data->img[0],
 		data->position_x * 64, data->position_y * 64);
-	ft_printf("lala\n");
 	walkwrite(data);
 	mlx_hook(data->mlx_window, 2, 1L << 0, key_event, data);
 	mlx_loop(data->mlx);

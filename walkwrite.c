@@ -5,7 +5,6 @@ void    walkwrite(t_data *data)
 {
 	char	*variable;
 
-	variable = malloc(100 * sizeof(char));
 	variable = ft_itoa(data->walk);
     if (data->walkcheck == 0)
         ft_printf("step: %d\n", data->walk);
